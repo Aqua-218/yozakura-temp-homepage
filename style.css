@@ -1,0 +1,610 @@
+/* ===== Reset & Base Styles ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-bg: #0a0a0f;
+    --color-bg-secondary: #12121a;
+    --color-bg-card: #1a1a28;
+    --color-text: #e8e8f0;
+    --color-text-secondary: #a8a8c0;
+    --color-sakura: #f6d8d8;
+    --color-moonlight: #cdd5ff;
+    --color-accent: #d4a5d4;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Outfit', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.7;
+    overflow-x: hidden;
+    font-feature-settings: "liga" 1, "kern" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ===== Navigation ===== */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 15, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(246, 216, 216, 0.1);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    height: 80px;
+    width: auto;
+    filter: drop-shadow(0 2px 12px rgba(100, 100, 200, 0.5));
+    transition: var(--transition);
+}
+
+.logo-image:hover {
+    filter: drop-shadow(0 4px 20px rgba(100, 100, 200, 0.7));
+    transform: translateY(-2px);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-sakura);
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--color-sakura);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    background: 
+        linear-gradient(180deg, #0a0a0f 0%, #12121a 50%, #1a1024 100%);
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(205, 213, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(246, 216, 216, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(212, 165, 212, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+    animation: shimmer 15s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.sakura-petals {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2;
+}
+
+/* Cherry Blossom Branch */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 600px;
+    height: 600px;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(246, 216, 216, 0.15) 0%, transparent 20%),
+        radial-gradient(circle at 50% 50%, rgba(246, 216, 216, 0.1) 0%, transparent 15%),
+        radial-gradient(circle at 70% 70%, rgba(246, 216, 216, 0.12) 0%, transparent 18%);
+    filter: blur(2px);
+    opacity: 0.6;
+    animation: breathe 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes breathe {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg);
+        opacity: 0.6;
+    }
+    50% { 
+        transform: scale(1.1) rotate(5deg);
+        opacity: 0.8;
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-title {
+    font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--color-sakura) 0%, var(--color-moonlight) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -1px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color-moonlight);
+    margin-bottom: 2rem;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 3rem;
+    line-height: 1.8;
+    font-weight: 400;
+}
+
+.hero-description-en {
+    display: block;
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: var(--color-moonlight);
+    opacity: 0.8;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.btn {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-sakura) 0%, var(--color-accent) 100%);
+    color: var(--color-bg);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(246, 216, 216, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--color-sakura);
+    border-color: var(--color-sakura);
+}
+
+.btn-secondary:hover {
+    background: var(--color-sakura);
+    color: var(--color-bg);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+.scroll-arrow {
+    width: 24px;
+    height: 24px;
+    border-left: 2px solid var(--color-sakura);
+    border-bottom: 2px solid var(--color-sakura);
+    transform: rotate(-45deg);
+    opacity: 0.6;
+}
+
+/* ===== Section Styles ===== */
+.section {
+    padding: 8rem 0;
+    position: relative;
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100px;
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        rgba(246, 216, 216, 0.3) 50%, 
+        transparent 100%
+    );
+}
+
+.section-title {
+    font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+    font-size: 3rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 4rem;
+    color: var(--color-sakura);
+    letter-spacing: -0.5px;
+}
+
+/* ===== About Section ===== */
+.about {
+    background: var(--color-bg-secondary);
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-text {
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    line-height: 1.9;
+}
+
+.about-text-jp {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin-top: 2rem;
+    font-weight: 400;
+}
+
+/* ===== Domains Section ===== */
+.domains-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.domain-card {
+    background: var(--color-bg-card);
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(246, 216, 216, 0.1);
+    transition: var(--transition);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.domain-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(246, 216, 216, 0.1) 50%, 
+        transparent 100%
+    );
+    transition: left 0.6s ease;
+}
+
+.domain-card:hover::before {
+    left: 100%;
+}
+
+.domain-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-sakura);
+    box-shadow: 
+        0 20px 40px rgba(246, 216, 216, 0.15),
+        0 0 60px rgba(205, 213, 255, 0.1);
+}
+
+.domain-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.domain-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: var(--color-moonlight);
+    letter-spacing: -0.3px;
+}
+
+.domain-description {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+
+
+/* ===== Vision Section ===== */
+.vision-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    gap: 5rem;
+}
+
+.vision-block {
+    text-align: center;
+}
+
+.vision-title {
+    font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    color: var(--color-moonlight);
+    letter-spacing: -0.5px;
+}
+
+.vision-text {
+    font-size: 1.3rem;
+    color: var(--color-text);
+    line-height: 1.9;
+    margin-bottom: 1rem;
+}
+
+.vision-text-jp {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    margin-top: 1.5rem;
+}
+
+/* ===== Team Section ===== */
+.team {
+    background: var(--color-bg-secondary);
+}
+
+.team-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.team-member {
+    background: var(--color-bg-card);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid rgba(246, 216, 216, 0.1);
+}
+
+.member-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--color-sakura);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.3px;
+}
+
+.member-role {
+    font-size: 1.1rem;
+    color: var(--color-moonlight);
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.member-bio {
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+}
+
+/* ===== Contact Section ===== */
+.contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-text {
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
+.contact-link {
+    color: var(--color-sakura);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.contact-link:hover {
+    opacity: 0.7;
+}
+
+.contact-note {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+}
+
+/* ===== Footer ===== */
+.footer {
+    background: var(--color-bg);
+    padding: 3rem 0;
+    border-top: 1px solid rgba(246, 216, 216, 0.1);
+    text-align: center;
+}
+
+.footer-text {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-tagline {
+    color: var(--color-sakura);
+    font-size: 0.9rem;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        gap: 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .domains-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .hero {
+        padding: 6rem 1rem 4rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .section {
+        padding: 5rem 0;
+    }
+}
